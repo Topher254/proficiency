@@ -5,7 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import Head from 'next/head';
 import { FaFacebook, FaTwitter, FaLinkedin, FaArrowLeft } from 'react-icons/fa';
 
-const WP_API = 'https://proessayworks.com/myblog/wp-json/wp/v2/posts';
+const WP_API = 'https://Essayproficiency.com/myblog/wp-json/wp/v2/posts';
 
 function estimateReadTime(text) {
   const words = text ? text.split(/\s+/).length : 0;
@@ -130,7 +130,7 @@ export default function BlogPostPage() {
 
   // Author name
   const author =
-    post._embedded?.author?.[0]?.name || 'ProEssayWorks Team';
+    post._embedded?.author?.[0]?.name || 'Essayproficiency Team';
 
   // Format date
   const formatDate = (dateString) => {
@@ -144,10 +144,10 @@ export default function BlogPostPage() {
   return (
     <>
       <Head>
-        <title>{post.title.rendered} | ProEssayWorks Blog</title>
+        <title>{post.title.rendered} | Essayproficiency Blog</title>
         <meta 
           name="description" 
-          content={post.excerpt?.rendered?.replace(/<[^>]+>/g, '').substring(0, 160) || `Read "${post.title.rendered}" on ProEssayWorks.`} 
+          content={post.excerpt?.rendered?.replace(/<[^>]+>/g, '').substring(0, 160) || `Read "${post.title.rendered}" on Essayproficiency.`} 
         />
         <meta property="og:title" content={post.title.rendered} />
         <meta property="og:description" content={post.excerpt?.rendered?.replace(/<[^>]+>/g, '').substring(0, 160) || ''} />
@@ -268,7 +268,7 @@ export default function BlogPostPage() {
               <div className="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-8 text-center text-white">
                 <h2 className="text-2xl font-bold mb-3">Need help with your essay?</h2>
                 <p className="text-indigo-100 mb-6 text-lg">
-                  Get expert writing assistance from ProEssayWorks. Our team is ready to help you succeed!
+                  Get expert writing assistance from Essayproficiency. Our team is ready to help you succeed!
                 </p>
                 <button
                   onClick={() => router.push('/gethelp')}
@@ -295,7 +295,7 @@ export default function BlogPostPage() {
                   </div>
                 </div>
                 <p className="text-gray-700 text-sm">
-                  Expert writer at ProEssayWorks, dedicated to helping students achieve academic success through quality writing.
+                  Expert writer at Essayproficiency, dedicated to helping students achieve academic success through quality writing.
                 </p>
               </div>
 

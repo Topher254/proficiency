@@ -1,18 +1,19 @@
 "use client";
 
 import Head from "next/head";
+import { Sparkles, Shield, BookOpen, Users, CheckCircle, AlertTriangle } from 'lucide-react';
 
 const EthicsCodePage = () => {
   return (
     <>
       <Head>
-        <title>Academic Ethics Code | ProEssayWorks</title>
-        <meta name="description" content="Read the ProEssayWorks Ethics Code. We uphold academic integrity and ethical standards in all our essay writing and academic support services." />
+        <title>Academic Ethics Code | Essayproficiency</title>
+        <meta name="description" content="Read the Essayproficiency Ethics Code. We uphold academic integrity and ethical standards in all our essay writing and academic support services." />
         <meta name="keywords" content="academic integrity, ethics, plagiarism checker, writing policy" />
-        <meta property="og:title" content="Academic Ethics Code | ProEssayWorks" />
-        <meta property="og:description" content="Read the ProEssayWorks Ethics Code. We uphold academic integrity and ethical standards in all our essay writing and academic support services." />
+        <meta property="og:title" content="Academic Ethics Code | Essayproficiency" />
+        <meta property="og:description" content="Read the Essayproficiency Ethics Code. We uphold academic integrity and ethical standards in all our essay writing and academic support services." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://proessayworks.com/ethics" />
+        <meta property="og:url" content="https://Essayproficiency.com/ethics" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -20,107 +21,157 @@ const EthicsCodePage = () => {
               '@context': 'https://schema.org',
               '@type': 'WebPage',
               'name': 'Academic Ethics Code',
-              'url': 'https://proessayworks.com/ethics',
-              'description': 'Read the ProEssayWorks Ethics Code. We uphold academic integrity and ethical standards in all our essay writing and academic support services.'
+              'url': 'https://Essayproficiency.com/ethics',
+              'description': 'Read the Essayproficiency Ethics Code. We uphold academic integrity and ethical standards in all our essay writing and academic support services.'
             }),
           }}
         />
       </Head>
-      <div className="max-w-4xl mx-auto text-white w-full px-4 py-8 sm:rounded-xl sm:shadow-md sm:p-8">
-        <h1 className="text-3xl font-bold text-white mb-6">Ethics Code</h1>
-        
-        <div className="bg-white rounded-lg p-6 mb-8 border border-indigo-100 shadow">
-          <div className="flex items-start">
-            <div className="bg-indigo-100 p-3 rounded-full mr-4">
-              <svg className="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-              </svg>
+      <div className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-20 px-6 lg:px-8">
+        {/* Animated Background Blobs */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-1/4 -left-20 w-96 h-96 bg-indigo-200/30 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s' }} />
+          <div className="absolute bottom-1/3 -right-20 w-[30rem] h-[30rem] bg-purple-200/30 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '10s', animationDelay: '1s' }} />
+          <div className="absolute top-2/3 left-1/3 w-80 h-80 bg-pink-200/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '12s' }} />
+        </div>
+
+        <div className="max-w-4xl mx-auto relative z-10">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm rounded-full px-4 py-1.5 border border-indigo-200 shadow-sm mb-6">
+              <Shield className="w-4 h-4 text-indigo-500" />
+              <span className="text-sm font-medium bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                Integrity First
+              </span>
             </div>
-            <div>
-              <h2 className="text-xl text-black font-semibold mb-2">Our Commitment</h2>
-              <p className="text-gray-700">
-                At ProEssayWorks, we uphold the highest ethical standards in academic support. 
-                We are committed to promoting learning while maintaining academic integrity.
-              </p>
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 mb-4">
+              Ethics{' '}
+              <span className="relative inline-block">
+                Code
+                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 6" fill="none">
+                  <path d="M2 4C50 2 150 2 198 4" stroke="url(#gradientStroke)" strokeWidth="2.5" strokeLinecap="round" />
+                  <defs>
+                    <linearGradient id="gradientStroke" x1="0" y1="0" x2="1" y2="0">
+                      <stop stopColor="#6366F1" />
+                      <stop offset="1" stopColor="#A855F7" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </span>
+            </h1>
+            <p className="text-gray-600 text-lg">
+              Upholding academic integrity and ethical standards in all our services.
+            </p>
+          </div>
+
+          {/* Main Content Card */}
+          <div className="bg-white/60 backdrop-blur-sm rounded-3xl shadow-xl border border-white/50 p-8 md:p-10 transition-all duration-300 hover:shadow-2xl">
+            {/* Commitment Card */}
+            <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-6 mb-8 border border-indigo-100 shadow-sm">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow-md">
+                  <Sparkles className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold text-gray-800 mb-2">Our Commitment</h2>
+                  <p className="text-gray-600 leading-relaxed">
+                    At Essayproficiency, we uphold the highest ethical standards in academic support. 
+                    We are committed to promoting learning while maintaining academic integrity.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="space-y-8">
+              <section>
+                <h2 className="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2">
+                  <span className="w-1.5 h-6 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full"></span>
+                  1. Academic Integrity
+                </h2>
+                <p className="text-gray-600 mb-2">We strictly prohibit:</p>
+                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                  <li>Submitting our work as one's own</li>
+                  <li>Plagiarism in any form</li>
+                  <li>Assistance with high-stakes exams</li>
+                  <li>Violation of institutional honor codes</li>
+                </ul>
+              </section>
+              
+              <section>
+                <h2 className="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2">
+                  <span className="w-1.5 h-6 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full"></span>
+                  2. Appropriate Use of Services
+                </h2>
+                <p className="text-gray-600 mb-2">Our services are intended for:</p>
+                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                  <li>Learning and research purposes</li>
+                  <li>Reference and sample materials</li>
+                  <li>Improving writing skills</li>
+                  <li>Understanding complex topics</li>
+                  <li>Developing proper citation practices</li>
+                </ul>
+              </section>
+              
+              <section>
+                <h2 className="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2">
+                  <span className="w-1.5 h-6 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full"></span>
+                  3. Writer Ethics
+                </h2>
+                <p className="text-gray-600 mb-2">Our writers must:</p>
+                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                  <li>Produce 100% original work</li>
+                  <li>Properly cite all sources</li>
+                  <li>Adhere to academic standards</li>
+                  <li>Maintain strict confidentiality</li>
+                  <li>Refuse requests violating academic integrity</li>
+                </ul>
+              </section>
+              
+              <section>
+                <h2 className="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2">
+                  <span className="w-1.5 h-6 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full"></span>
+                  4. User Responsibilities
+                </h2>
+                <p className="text-gray-600 mb-2">Users agree to:</p>
+                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                  <li>Use materials ethically as learning aids</li>
+                  <li>Properly cite our work if referenced</li>
+                  <li>Not submit our work as their own</li>
+                  <li>Comply with their institution's policies</li>
+                </ul>
+              </section>
+              
+              <section>
+                <h2 className="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2">
+                  <span className="w-1.5 h-6 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full"></span>
+                  5. Anti-Plagiarism Measures
+                </h2>
+                <p className="text-gray-600 mb-2">We implement:</p>
+                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                  <li>Mandatory plagiarism checks for all orders</li>
+                  <li>Strict consequences for plagiarizing writers</li>
+                  <li>Education on proper citation practices</li>
+                  <li>Free plagiarism reports upon request</li>
+                </ul>
+              </section>
+              
+              {/* Educational Purpose Banner */}
+              <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-5 border border-green-100 shadow-sm">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                    <BookOpen className="w-4 h-4 text-green-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-green-800 mb-1">Educational Purpose</h3>
+                    <p className="text-green-700 text-sm leading-relaxed">
+                      Our ultimate goal is to support students in their educational journey. We encourage 
+                      users to engage with our materials as learning tools to enhance their own academic skills.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div className="prose prose-indigo">
-          <section className="mb-8">
-            <h2 className="text-xl font-semibold mb-3">1. Academic Integrity</h2>
-            <p>
-              We strictly prohibit:
-            </p>
-            <ul className="list-disc pl-5">
-              <li>Submitting our work as one's own</li>
-              <li>Plagiarism in any form</li>
-              <li>Assistance with high-stakes exams</li>
-              <li>Violation of institutional honor codes</li>
-            </ul>
-          </section>
-          
-          <section className="mb-8">
-            <h2 className="text-xl font-semibold mb-3">2. Appropriate Use of Services</h2>
-            <p>
-              Our services are intended for:
-            </p>
-            <ul className="list-disc pl-5">
-              <li>Learning and research purposes</li>
-              <li>Reference and sample materials</li>
-              <li>Improving writing skills</li>
-              <li>Understanding complex topics</li>
-              <li>Developing proper citation practices</li>
-            </ul>
-          </section>
-          
-          <section className="mb-8">
-            <h2 className="text-xl font-semibold mb-3">3. Writer Ethics</h2>
-            <p>
-              Our writers must:
-            </p>
-            <ul className="list-disc pl-5">
-              <li>Produce 100% original work</li>
-              <li>Properly cite all sources</li>
-              <li>Adhere to academic standards</li>
-              <li>Maintain strict confidentiality</li>
-              <li>Refuse requests violating academic integrity</li>
-            </ul>
-          </section>
-          
-          <section className="mb-8">
-            <h2 className="text-xl font-semibold mb-3">4. User Responsibilities</h2>
-            <p>
-              Users agree to:
-            </p>
-            <ul className="list-disc pl-5">
-              <li>Use materials ethically as learning aids</li>
-              <li>Properly cite our work if referenced</li>
-              <li>Not submit our work as their own</li>
-              <li>Comply with their institution's policies</li>
-            </ul>
-          </section>
-          
-          <section className="mb-8">
-            <h2 className="text-xl font-semibold mb-3">5. Anti-Plagiarism Measures</h2>
-            <p>
-              We implement:
-            </p>
-            <ul className="list-disc pl-5">
-              <li>Mandatory plagiarism checks for all orders</li>
-              <li>Strict consequences for plagiarizing writers</li>
-              <li>Education on proper citation practices</li>
-              <li>Free plagiarism reports upon request</li>
-            </ul>
-          </section>
-          
-          <section className="mb-8 bg-green-50 p-4 rounded-lg border border-green-100">
-            <h2 className="text-lg font-semibold text-green-700 mb-2">Educational Purpose</h2>
-            <p className="text-green-700">
-              Our ultimate goal is to support students in their educational journey. We encourage 
-              users to engage with our materials as learning tools to enhance their own academic skills.
-            </p>
-          </section>
         </div>
       </div>
     </>

@@ -2,7 +2,8 @@
 
 import { 
   User, Mail, Phone, BookOpen, Calendar, FileText, 
-  DollarSign, AlertCircle, CheckCircle, Paperclip, X
+  DollarSign, AlertCircle, CheckCircle, Paperclip, X,
+  Sparkles, Clock, Zap, Shield, Upload
 } from 'lucide-react';
 import { API_BASE } from '../lib/apiConfig';
 import Link from 'next/link';
@@ -247,17 +248,21 @@ const StudentAssignmentForm = () => {
 
   const getUrgencyColor = (urgency) => {
     switch (urgency) {
-      case 'High': return 'border-red-300 bg-red-50';
-      case 'Medium': return 'border-yellow-300 bg-yellow-50';
-      case 'Low': return 'border-green-300 bg-green-50';
-      default: return 'border-gray-300 bg-white';
+      case 'High': return 'border-red-300 bg-red-50 text-red-700';
+      case 'Medium': return 'border-yellow-300 bg-yellow-50 text-yellow-700';
+      case 'Low': return 'border-green-300 bg-green-50 text-green-700';
+      default: return 'border-gray-300 bg-white text-gray-700';
     }
   };
 
   if (success) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-indigo-100 flex items-center justify-center p-4">
-        <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
+      <div className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center p-4">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-1/4 -left-20 w-96 h-96 bg-indigo-200/30 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s' }} />
+          <div className="absolute bottom-1/3 -right-20 w-[30rem] h-[30rem] bg-purple-200/30 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '10s', animationDelay: '1s' }} />
+        </div>
+        <div className="max-w-md w-full bg-white/60 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 p-8 text-center">
           <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
             <CheckCircle className="h-6 w-6 text-green-600" />
           </div>
@@ -266,16 +271,12 @@ const StudentAssignmentForm = () => {
             Thank you for your submission. We've sent a confirmation email to your email. 
             A writer will be assigned to your task within the next 1 minute.
           </p>
-          
           <button
-            onClick={() => {
-              setSuccess(false);
-            }}
-            className="w-full mt-4 bg-gray-100 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-200 transition-colors"
+            onClick={() => setSuccess(false)}
+            className="w-full mt-2 bg-indigo-100 text-indigo-700 px-4 py-2 rounded-xl hover:bg-indigo-200 transition-colors"
           >
             Submit Another Assignment
           </button>
-          
           <Link 
             href="/" 
             className="mt-4 inline-block w-full text-indigo-600 hover:text-indigo-800 font-medium"
@@ -288,37 +289,50 @@ const StudentAssignmentForm = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-16 px-6 lg:px-8">
       <Head>
         <meta name="keywords" content="do my assignment, coursework help, urgent homework, essay writers, assignment support, write essays for money" />
       </Head>
-      <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-8 relative">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Book Assignment Help</h1>
-          <p className="text-lg text-gray-600">Get professional help with your academic assignments</p>
+
+      {/* Animated Background Blobs */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-indigo-200/30 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s' }} />
+        <div className="absolute bottom-1/3 -right-20 w-[30rem] h-[30rem] bg-purple-200/30 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '10s', animationDelay: '1s' }} />
+        <div className="absolute top-2/3 left-1/3 w-80 h-80 bg-pink-200/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '12s' }} />
+      </div>
+
+      <div className="max-w-4xl mx-auto relative z-10">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm rounded-full px-4 py-1.5 border border-indigo-200 shadow-sm mb-6">
+            <Sparkles className="w-4 h-4 text-indigo-500" />
+            <span className="text-sm font-medium bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Instant Support</span>
+          </div>
+          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">
+            Book Assignment Help
+          </h1>
+          <p className="text-lg text-gray-600">
+            Get professional help with your academic assignments
+          </p>
         </div>
 
-        <div className="bg-white shadow-xl rounded-lg p-8">
+        <div className="bg-white/60 backdrop-blur-sm rounded-3xl shadow-xl border border-white/50 p-8 md:p-10">
           {error && (
-            <div className="mb-6 bg-red-50 border border-red-200 rounded-md p-4">
-              <div className="flex">
-                <AlertCircle className="h-5 w-5 text-red-400" />
-                <div className="ml-3">
-                  <p className="text-sm text-red-800">{error}</p>
-                </div>
+            <div className="mb-6 bg-red-50/80 backdrop-blur-sm border border-red-200 rounded-xl p-4">
+              <div className="flex gap-3">
+                <AlertCircle className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                <p className="text-sm text-red-800">{error}</p>
               </div>
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-8">
             {/* Personal Information */}
-            <div className="border-b border-gray-200 pb-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                <User className="h-5 w-5 mr-2 text-indigo-600" />
+            <div className="border-b border-white/30 pb-6">
+              <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                <User className="h-5 w-5 text-indigo-600" />
                 Personal Information
               </h2>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Name *</label>
                   <input
@@ -327,38 +341,36 @@ const StudentAssignmentForm = () => {
                     value={formData.studentName}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-black placeholder:text-gray-500"
+                    className="w-full px-4 py-2.5 bg-white/80 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all text-gray-800 placeholder:text-gray-400"
                     placeholder="Enter your full name"
                   />
                 </div>
-                
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+                    <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                     <input
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-black placeholder:text-gray-500"
+                      className="w-full pl-10 pr-4 py-2.5 bg-white/80 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent text-gray-800 placeholder:text-gray-400"
                       placeholder="your.email@example.com"
                     />
                   </div>
                 </div>
-                
                 <div className="md:col-span-2">
                   <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
                   <div className="relative">
-                    <Phone className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+                    <Phone className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                     <input
                       type="tel"
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
                       required
-                      className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-black placeholder:text-gray-500"
+                      className="w-full pl-10 pr-4 py-2.5 bg-white/80 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent text-gray-800 placeholder:text-gray-400"
                       placeholder="+1 (555) 123-4567"
                     />
                   </div>
@@ -367,13 +379,12 @@ const StudentAssignmentForm = () => {
             </div>
 
             {/* Assignment Details */}
-            <div className="border-b border-gray-200 pb-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                <BookOpen className="h-5 w-5 mr-2 text-indigo-600" />
+            <div className="border-b border-white/30 pb-6">
+              <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                <BookOpen className="h-5 w-5 text-indigo-600" />
                 Assignment Details
               </h2>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Assignment Type *</label>
                   <select
@@ -381,7 +392,7 @@ const StudentAssignmentForm = () => {
                     value={formData.assignmentType}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-black placeholder:text-gray-500"
+                    className="w-full px-4 py-2.5 bg-white/80 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent text-gray-800"
                   >
                     <option value="">Select assignment type</option>
                     {assignmentTypes.map(type => (
@@ -389,7 +400,6 @@ const StudentAssignmentForm = () => {
                     ))}
                   </select>
                 </div>
-                
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
                   <select
@@ -397,7 +407,7 @@ const StudentAssignmentForm = () => {
                     value={formData.subject}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-black placeholder:text-gray-500"
+                    className="w-full px-4 py-2.5 bg-white/80 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent text-gray-800"
                   >
                     <option value="">Select subject</option>
                     {subjects.map(subject => (
@@ -405,22 +415,20 @@ const StudentAssignmentForm = () => {
                     ))}
                   </select>
                 </div>
-                
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Deadline *</label>
                   <div className="relative">
-                    <Calendar className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+                    <Calendar className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                     <input
                       type="datetime-local"
                       name="deadline"
                       value={formData.deadline}
                       onChange={handleInputChange}
                       required
-                      className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-black placeholder:text-gray-500"
+                      className="w-full pl-10 pr-4 py-2.5 bg-white/80 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent text-gray-800"
                     />
                   </div>
                 </div>
-                
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Number of Pages *</label>
                   <input
@@ -430,52 +438,56 @@ const StudentAssignmentForm = () => {
                     onChange={handleInputChange}
                     required
                     min="1"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-black placeholder:text-gray-500"
+                    className="w-full px-4 py-2.5 bg-white/80 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent text-gray-800"
                     placeholder="e.g., 5"
                   />
                 </div>
-                
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Urgency Level</label>
-                  <div className="grid grid-cols-3 gap-2">
-                    {['Low', 'Medium', 'High'].map(level => (
-                      <button
-                        key={level}
-                        type="button"
-                        onClick={() => setFormData(prev => ({ ...prev, urgency: level }))}
-                        className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                          formData.urgency === level
-                            ? 'bg-indigo-600 text-white'
-                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                        }`}
-                      >
-                        {level}
-                      </button>
-                    ))}
+                  <div className="grid grid-cols-3 gap-3">
+                    {['Low', 'Medium', 'High'].map(level => {
+                      const isActive = formData.urgency === level;
+                      return (
+                        <button
+                          key={level}
+                          type="button"
+                          onClick={() => setFormData(prev => ({ ...prev, urgency: level }))}
+                          className={`flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                            isActive
+                              ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md'
+                              : 'bg-white/80 border border-gray-200 text-gray-700 hover:bg-white/90'
+                          }`}
+                        >
+                          {level === 'Low' && <Clock className="w-3.5 h-3.5" />}
+                          {level === 'Medium' && <Zap className="w-3.5 h-3.5" />}
+                          {level === 'High' && <AlertCircle className="w-3.5 h-3.5" />}
+                          {level}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
-                
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Budget (USD)</label>
                   <div className="relative">
-                    <DollarSign className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+                    <DollarSign className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                     <input
                       type="text"
                       name="budget"
                       value={formData.budget}
                       readOnly
-                      className="w-full pl-10 pr-24 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-gray-50 text-black placeholder:text-gray-500"
+                      className="w-full pl-10 pr-24 py-2.5 bg-gray-50/80 border border-gray-200 rounded-xl text-gray-800"
                     />
                     <button
                       type="button"
                       onClick={() => setDiscountApplied(!discountApplied)}
-                      className={`absolute right-2 top-2 px-3 py-1 text-xs rounded ${
+                      className={`absolute right-2 top-2 px-3 py-1 text-xs rounded-lg transition-all ${
                         discountApplied 
-                          ? 'bg-green-100 text-green-800 border border-green-300'
-                          : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+                          ? 'bg-green-100 text-green-800 border border-green-200'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                       }`}
                     >
-                      {discountApplied ? 'Discount Applied' : 'Apply Discount'}
+                      {discountApplied ? '✓ 1.5% Off' : 'Apply Discount'}
                     </button>
                   </div>
                   {discountApplied && (
@@ -487,11 +499,10 @@ const StudentAssignmentForm = () => {
 
             {/* Assignment Description */}
             <div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                <FileText className="h-5 w-5 mr-2 text-indigo-600" />
+              <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                <FileText className="h-5 w-5 text-indigo-600" />
                 Assignment Description
               </h2>
-              
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Detailed Instructions *
@@ -502,35 +513,32 @@ const StudentAssignmentForm = () => {
                   onChange={handleInputChange}
                   required
                   rows={6}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-black placeholder:text-gray-500"
+                  className="w-full px-4 py-2.5 bg-white/80 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent text-gray-800 placeholder:text-gray-400"
                   placeholder="Please provide detailed instructions for your assignment including any specific requirements, formatting guidelines, sources to be used, etc."
                 />
               </div>
 
               {/* File Upload Section */}
-              <div className="mt-4">
+              <div className="mt-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Attach Files (Optional)
                 </label>
-                
                 <div 
                   className="flex items-center justify-center w-full"
                   onDragOver={handleDragOver}
                   onDrop={handleDrop}
                 >
-                  <label 
-                    className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer border-gray-300 hover:border-indigo-400 bg-gray-50 transition-colors"
+                  <div 
+                    className="flex flex-col items-center justify-center w-full h-36 border-2 border-dashed rounded-xl cursor-pointer border-gray-300 hover:border-indigo-400 bg-white/40 hover:bg-white/60 transition-all"
                     onClick={triggerFileInput}
                   >
-                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                      <Paperclip className="w-8 h-8 text-gray-400 mb-2" />
-                      <p className="text-sm text-gray-500">
-                        <span className="font-semibold">Click to upload</span> or drag and drop
-                      </p>
-                      <p className="text-xs text-gray-500 mt-1">
-                        PDF, DOC, DOCX, PPT, TXT, JPG, PNG (Max: 5 files, 10MB each)
-                      </p>
-                    </div>
+                    <Upload className="w-8 h-8 text-gray-400 mb-2" />
+                    <p className="text-sm text-gray-500">
+                      <span className="font-semibold">Click to upload</span> or drag and drop
+                    </p>
+                    <p className="text-xs text-gray-400 mt-1">
+                      PDF, DOC, DOCX, PPT, TXT, JPG, PNG (Max: 5 files, 10MB each)
+                    </p>
                     <input 
                       type="file" 
                       className="hidden" 
@@ -539,7 +547,7 @@ const StudentAssignmentForm = () => {
                       onChange={handleFileChange}
                       accept=".pdf,.doc,.docx,.ppt,.pptx,.txt,.jpg,.jpeg,.png"
                     />
-                  </label>
+                  </div>
                 </div>
                 
                 {files.length > 0 && (
@@ -547,7 +555,7 @@ const StudentAssignmentForm = () => {
                     <p className="text-sm font-medium text-gray-700 mb-2">Selected files:</p>
                     <div className="space-y-2">
                       {files.map((file, index) => (
-                        <div key={index} className="flex items-center justify-between bg-gray-50 rounded-md px-4 py-2">
+                        <div key={index} className="flex items-center justify-between bg-white/50 backdrop-blur-sm rounded-lg px-4 py-2">
                           <div className="flex items-center max-w-[85%]">
                             <Paperclip className="h-4 w-4 text-gray-500 mr-2 flex-shrink-0" />
                             <span className="text-sm text-gray-700 truncate">{file.name}</span>
@@ -569,12 +577,12 @@ const StudentAssignmentForm = () => {
             </div>
 
             {/* Urgency Indicator */}
-            <div className={`mt-6 p-4 rounded-lg border-2 ${getUrgencyColor(formData.urgency)}`}>
-              <div className="flex items-center">
-                <AlertCircle className="h-5 w-5 mr-2 text-red-500" />
-                <span className="font-medium text-gray-700">Urgency Level: {formData.urgency}</span>
+            <div className={`mt-6 p-4 rounded-xl border-2 ${getUrgencyColor(formData.urgency)} bg-opacity-50 backdrop-blur-sm`}>
+              <div className="flex items-center gap-2">
+                <AlertCircle className="h-5 w-5" />
+                <span className="font-medium">Urgency Level: {formData.urgency}</span>
               </div>
-              <p className="text-sm mt-1 text-gray-500">
+              <p className="text-sm mt-1 opacity-90">
                 {formData.urgency === 'High' && 'Rush orders may incur additional charges.'}
                 {formData.urgency === 'Medium' && 'Standard processing time applies.'}
                 {formData.urgency === 'Low' && 'Extended deadline - may qualify for discounts.'}
@@ -586,22 +594,28 @@ const StudentAssignmentForm = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-indigo-600 text-white px-6 py-3 rounded-full cursor-pointer font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="group relative w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 overflow-hidden"
               >
                 {loading ? (
-                  <div className="flex items-center justify-center">
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                  <div className="flex items-center justify-center gap-2">
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
                     Submitting...
                   </div>
                 ) : (
-                  'Submit Assignment Request'
+                  <>
+                    <span className="relative z-10">Submit Assignment Request</span>
+                    <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                  </>
                 )}
               </button>
             </div>
 
-            <div className="mt-4 text-center">
-              <p className="text-sm text-gray-600">
-                By submitting this form, you agree to our terms of service and privacy policy.
+            <div className="text-center">
+              <p className="text-sm text-gray-500">
+                By submitting this form, you agree to our{' '}
+                <Link href="/serviceagreement" className="text-indigo-600 hover:underline">terms of service</Link>
+                {' '}and{' '}
+                <Link href="/privacynotice" className="text-indigo-600 hover:underline">privacy policy</Link>.
               </p>
             </div>
           </form>

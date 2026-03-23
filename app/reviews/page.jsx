@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from "next/navigation";
 import Head from 'next/head';
+import { Sparkles, Star, ChevronLeft, ChevronRight, ChevronDown, MessageSquare, Users, CheckCircle2, ArrowRight } from 'lucide-react';
 
 export default function Testimonials() {
   const [openFAQ, setOpenFAQ] = useState(null);
@@ -203,109 +204,113 @@ export default function Testimonials() {
 
   const renderStars = (rating) => {
     return (
-      <div className="flex text-yellow-400">
+      <div className="flex gap-0.5">
         {[...Array(5)].map((_, i) => (
-          <svg key={i} className={`w-4 h-4 ${i < rating ? 'fill-current' : 'fill-gray-300'}`} viewBox="0 0 20 20">
-            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-          </svg>
+          <Star key={i} className={`w-4 h-4 ${i < rating ? 'fill-yellow-400 text-yellow-400' : 'fill-gray-200 text-gray-200'}`} />
         ))}
       </div>
     );
   };
 
+  // Shared background blobs component
+  const BackgroundBlobs = () => (
+    <div className="absolute inset-0 -z-10 overflow-hidden">
+      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-indigo-200/30 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s' }} />
+      <div className="absolute bottom-1/3 -right-20 w-[30rem] h-[30rem] bg-purple-200/30 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '10s', animationDelay: '1s' }} />
+      <div className="absolute top-2/3 left-1/3 w-80 h-80 bg-pink-200/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '12s' }} />
+    </div>
+  );
+
   if (currentView === 'reviews') {
     return (
-      <section className="bg-gradient-to-br from-indigo-50 to-indigo-100 min-h-screen p-8" aria-label="Student Reviews">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-20 px-6 lg:px-8">
+        <BackgroundBlobs />
+        <div className="max-w-7xl mx-auto relative z-10">
           {/* Header */}
-          <header className="text-center mb-12">
-            <button 
-              onClick={goToTestimonials}
-              className="inline-flex items-center text-indigo-600 hover:text-indigo-800 mb-6 transition-colors duration-200"
-            >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-              Back to Testimonials
+          <div className="text-center mb-16">
+            <button onClick={goToTestimonials} className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-800 mb-6 transition-colors group">
+              <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+              <span>Back to Testimonials</span>
             </button>
-            <h1 className="text-4xl font-bold text-gray-800 mb-4">All Student Reviews</h1>
+            <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm rounded-full px-4 py-1.5 border border-indigo-200 shadow-sm mb-6">
+              <MessageSquare className="w-4 h-4 text-indigo-500" />
+              <span className="text-sm font-medium bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Real Feedback</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 mb-4">All Student Reviews</h1>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
               Read what our students have to say about their experience with our academic writing services.
             </p>
-          </header>
+          </div>
 
           {/* Reviews Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             {currentReviews.map((review) => (
-              <article key={review.id} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200" aria-label={`Review by ${review.studentId}`}>
-                <div className="flex items-center mb-4">
-                  {renderStars(review.rating)}
-                </div>
-                <blockquote className="text-gray-700 mb-4 text-sm leading-relaxed">
-                  “{review.text}”
-                </blockquote>
-                <div className="flex items-center">
-                  <div className={`w-8 h-8 bg-gradient-to-r ${review.gradient} rounded-full flex items-center justify-center mr-3`} aria-hidden="true">
-                    <span className="text-white text-xs font-bold">{review.initials}</span>
+              <div key={review.id} className="group relative bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 border border-white/50">
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/0 to-indigo-100/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative">
+                  <div className="flex items-center justify-between mb-4">
+                    {renderStars(review.rating)}
+                    <span className="text-xs text-gray-400">{review.date}</span>
                   </div>
-                  <div>
-                    <p className="font-semibold text-gray-800 text-sm">Student ID: {review.studentId}</p>
-                    <p className="text-gray-500 text-xs">Writer: {review.writer}</p>
-                    <p className="text-gray-400 text-xs">{review.date}</p>
+                  <blockquote className="text-gray-700 mb-4 text-sm leading-relaxed">
+                    “{review.text}”
+                  </blockquote>
+                  <div className="flex items-center gap-3">
+                    <div className={`w-10 h-10 rounded-full bg-gradient-to-r ${review.gradient} flex items-center justify-center shadow-md`}>
+                      <span className="text-white text-xs font-bold">{review.initials}</span>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-gray-800 text-sm">Student ID: {review.studentId}</p>
+                      <p className="text-gray-500 text-xs">Writer: {review.writer}</p>
+                    </div>
                   </div>
                 </div>
-              </article>
+              </div>
             ))}
           </div>
 
           {/* Pagination */}
-          <div className="flex justify-center items-center space-x-4">
+          <div className="flex flex-wrap justify-center items-center gap-4">
             <button
               onClick={prevPage}
               disabled={currentPage === 0}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
+              className={`px-5 py-2 rounded-xl font-medium transition-all duration-200 ${
                 currentPage === 0 
-                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed' 
-                  : 'bg-indigo-500 text-white hover:bg-indigo-600'
+                  ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+                  : 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:shadow-lg hover:-translate-y-0.5'
               }`}
             >
               Previous
             </button>
-            
-            <div className="flex items-center space-x-2">
-              {[...Array(totalPages)].map((_, index) => (
+            <div className="flex gap-2">
+              {[...Array(totalPages)].map((_, idx) => (
                 <button
-                  key={index}
-                  onClick={() => setCurrentPage(index)}
-                  className={`w-8 h-8 rounded-full font-medium transition-colors duration-200 ${
-                    currentPage === index 
-                      ? 'bg-indigo-500 text-white' 
-                      : 'bg-white text-gray-600 hover:bg-gray-100'
+                  key={idx}
+                  onClick={() => setCurrentPage(idx)}
+                  className={`w-9 h-9 rounded-full font-medium transition-all duration-200 ${
+                    currentPage === idx 
+                      ? 'bg-indigo-600 text-white shadow-md' 
+                      : 'bg-white/60 text-gray-600 hover:bg-indigo-100'
                   }`}
                 >
-                  {index + 1}
+                  {idx + 1}
                 </button>
               ))}
             </div>
-            
             <button
               onClick={nextPage}
               disabled={currentPage === totalPages - 1}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
+              className={`px-5 py-2 rounded-xl font-medium transition-all duration-200 ${
                 currentPage === totalPages - 1 
-                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed' 
-                  : 'bg-indigo-500 text-white hover:bg-indigo-600'
+                  ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+                  : 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:shadow-lg hover:-translate-y-0.5'
               }`}
             >
               Next
             </button>
           </div>
-
-          {/* Page Info */}
-          <div className="text-center mt-6">
-            <p className="text-gray-600">
-              Showing {currentPage * reviewsPerPage + 1} - {Math.min((currentPage + 1) * reviewsPerPage, allReviews.length)} of {allReviews.length} reviews
-            </p>
+          <div className="text-center mt-6 text-gray-500 text-sm">
+            Showing {currentPage * reviewsPerPage + 1} - {Math.min((currentPage + 1) * reviewsPerPage, allReviews.length)} of {allReviews.length} reviews
           </div>
         </div>
       </section>
@@ -313,167 +318,111 @@ export default function Testimonials() {
   }
  
   return (
-    <section className="bg-gradient-to-br from-indigo-50 to-indigo-100 min-h-screen p-8" aria-label="Student Testimonials and FAQ">
+    <section className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-20 px-6 lg:px-8">
       <Head>
         <meta name="keywords" content="reviews, testimonials, student feedback, essay writers, assignment writing service" />
       </Head>
-      <div className="max-w-7xl mx-auto">
+      <BackgroundBlobs />
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Testimonials Section */}
-        <header className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">What students say about us</h1>
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm rounded-full px-4 py-1.5 border border-indigo-200 shadow-sm mb-6">
+            <Users className="w-4 h-4 text-indigo-500" />
+            <span className="text-sm font-medium bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Student Voices</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 mb-4">What students say about us</h1>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
             See real testimonials and frequently asked questions about our essay writing and academic support services.
           </p>
-        </header>
-        <div className="mb-20">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            {/* Left Content */}
-            <div className="lg:w-1/2">
-              <h2 className="text-4xl font-bold text-gray-800 mb-6">
-                What our students say<br />
-                about our expertise
-              </h2>
-              <p className="text-gray-600 text-lg mb-8">
-                Discover the experiences from those who have trusted us to enhance 
-                their academic journey. Browse through the ProEssayWorks reviews and 
-                select your expert!
-              </p>
-              <div className="flex gap-4">
-                <button onClick={handleOrderClick} className="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200">
-                  Get my assignment
-                </button>
-                <button 
-                  onClick={goToReviews}
-                  className="border-2 border-indigo-500 text-indigo-500 hover:bg-indigo-50 font-semibold px-6 py-3 rounded-lg transition-colors duration-200"
-                >
-                  View all testimonials
-                </button>
-              </div>
+        </div>
+
+        <div className="flex flex-col lg:flex-row gap-12 mb-24">
+          {/* Left Column */}
+          <div className="lg:w-1/2 space-y-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 leading-tight">
+              What our students say<br />
+              about our expertise
+            </h2>
+            <p className="text-gray-600 text-lg">
+              Discover the experiences from those who have trusted us to enhance 
+              their academic journey. Browse through the Essayproficiency reviews and 
+              select your expert!
+            </p>
+            <div className="flex flex-wrap gap-4 pt-4">
+              <button onClick={handleOrderClick} className="group relative bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold px-8 py-3 rounded-full shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+                <span className="relative z-10">Get my assignment</span>
+                <ArrowRight className="inline ml-2 w-4 h-4 relative z-10" />
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+              </button>
+              <button 
+                onClick={goToReviews}
+                className="border-2 border-indigo-500 text-indigo-500 hover:bg-indigo-50 font-semibold px-8 py-3 rounded-full transition-all duration-200"
+              >
+                View all testimonials
+              </button>
             </div>
+          </div>
 
-            {/* Right Content - Testimonials */}
-            <div className="lg:w-1/2 relative">
-              {/* Decorative Elements */}
-              <div className="absolute -top-4 -left-4 w-16 h-16">
-                <svg viewBox="0 0 100 100" className="w-full h-full text-green-300 opacity-60" aria-hidden="true">
-                  <path d="M10,50 Q50,10 90,50 Q50,90 10,50" fill="currentColor" />
-                </svg>
-              </div>
-              <div className="absolute -bottom-8 -right-8">
-                <div className="flex flex-col gap-2">
-                  <div className="w-20 h-3 bg-green-300 rounded-full opacity-60"></div>
-                  <div className="w-16 h-3 bg-green-400 rounded-full opacity-70"></div>
-                </div>
-              </div>
-
-              {/* Testimonial Cards */}
-              <div className="space-y-6">
-                {/* First Testimonial */}
-                <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 transform rotate-1">
-                  <div className="flex items-center mb-4">
-                    {renderStars(5)}
+          {/* Right Column - Testimonial Cards */}
+          <div className="lg:w-1/2 relative">
+            <div className="space-y-6">
+              {allReviews.slice(0, 2).map((review, idx) => (
+                <div key={review.id} className={`bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-300 ${idx === 0 ? 'rotate-1' : '-rotate-1 ml-8'}`}>
+                  <div className="flex items-center justify-between mb-4">
+                    {renderStars(review.rating)}
+                    <span className="text-xs text-gray-400">{review.date}</span>
                   </div>
-                  <p className="text-gray-700 mb-4 text-sm">
-                    "Exceptional service! The quality exceeded my expectations and the writer 
-                    understood exactly what I needed. Will definitely use again for future projects."
-                  </p>
-                  <div className="flex items-center">
-                    <div className="w-8 h-8 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center mr-3" aria-hidden="true">
-                      <span className="text-white text-xs font-bold">SM</span>
+                  <blockquote className="text-gray-700 mb-4 text-sm leading-relaxed">
+                    “{review.text}”
+                  </blockquote>
+                  <div className="flex items-center gap-3">
+                    <div className={`w-10 h-10 rounded-full bg-gradient-to-r ${review.gradient} flex items-center justify-center shadow-md`}>
+                      <span className="text-white text-xs font-bold">{review.initials}</span>
                     </div>
                     <div>
-                      <p className="font-semibold text-gray-800 text-sm">Student ID: #892456</p>
-                      <p className="text-gray-500 text-xs">Writer: Prof. Darwin Victor</p>
-                      <p className="text-gray-400 text-xs">03/15/2024</p>
+                      <p className="font-semibold text-gray-800 text-sm">Student ID: {review.studentId}</p>
+                      <p className="text-gray-500 text-xs">Writer: {review.writer}</p>
                     </div>
                   </div>
                 </div>
-
-                {/* Second Testimonial */}
-                <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 transform -rotate-1 ml-8">
-                  <div className="flex items-center mb-4">
-                    {renderStars(5)}
-                  </div>
-                  <p className="text-gray-700 mb-4 text-sm">
-                    "Amazing turnaround time without compromising quality. The research was thorough 
-                    and the writing style perfectly matched my requirements. Highly recommend!"
-                  </p>
-                  <div className="flex items-center">
-                    <div className="w-8 h-8 bg-gradient-to-r from-indigo-400 to-green-400 rounded-full flex items-center justify-center mr-3" aria-hidden="true">
-                      <span className="text-white text-xs font-bold">JD</span>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-800 text-sm">Student ID: #745123</p>
-                      <p className="text-gray-500 text-xs">Writer: Cole Raphael</p>
-                      <p className="text-gray-400 text-xs">03/12/2024</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Rating indicator */}
-              <div className="absolute top-0 right-0 bg-white rounded-full px-3 py-1 shadow-sm border border-gray-200">
-                <span className="text-gray-600 text-sm font-medium">4.9/5</span>
-              </div>
+              ))}
+            </div>
+            <div className="absolute top-0 right-0 bg-white/70 backdrop-blur-sm rounded-full px-3 py-1 border border-white/50 shadow-sm">
+              <span className="text-indigo-600 font-bold text-sm">4.9/5</span>
             </div>
           </div>
         </div>
 
         {/* FAQ Section */}
         <div className="relative">
-          {/* Decorative Elements */}
-          <div className="absolute top-0 right-0">
-            <div className="flex flex-col gap-2">
-              <div className="w-24 h-4 bg-green-300 rounded-full opacity-60"></div>
-              <div className="w-20 h-4 bg-green-400 rounded-full opacity-70"></div>
-            </div>
-          </div>
-
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">FAQ</h2>
+            <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm rounded-full px-4 py-1.5 border border-indigo-200 shadow-sm mb-6">
+              <CheckCircle2 className="w-4 h-4 text-indigo-500" />
+              <span className="text-sm font-medium bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Got Questions?</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Frequently Asked Questions</h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Find clear answers to the most common questions students ask — everything you need to 
-              know in one place.
+              Find clear answers to the most common questions students ask — everything you need to know in one place.
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {faqs.map((faq, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-xl border border-gray-200 overflow-hidden"
+          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
+            {faqs.map((faq, index) => (
+              <div key={index} className="bg-white/60 backdrop-blur-sm rounded-xl border border-white/50 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200">
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full text-left p-5 focus:outline-none flex justify-between items-center hover:bg-white/40 transition-colors"
                 >
-                  <button
-                    onClick={() => toggleFAQ(index)}
-                    className="w-full text-left p-6 focus:outline-none hover:bg-gray-50 transition-colors duration-200"
-                  >
-                    <div className="flex justify-between items-center">
-                      <h3 className="font-semibold text-gray-800 pr-4">
-                        {faq.question}
-                      </h3>
-                      <svg
-                        className={`w-5 h-5 text-gray-500 transform transition-transform duration-200 flex-shrink-0 ${
-                          openFAQ === index ? 'rotate-180' : ''
-                        }`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </div>
-                  </button>
-                  {openFAQ === index && (
-                    <div className="px-6 pb-6">
-                      <p className="text-gray-600 leading-relaxed">
-                        {faq.answer}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
+                  <h3 className="font-semibold text-gray-800 pr-4">{faq.question}</h3>
+                  <ChevronDown className={`w-5 h-5 text-gray-500 transition-transform duration-200 flex-shrink-0 ${openFAQ === index ? 'rotate-180' : ''}`} />
+                </button>
+                {openFAQ === index && (
+                  <div className="px-5 pb-5">
+                    <p className="text-gray-600 leading-relaxed text-sm">{faq.answer}</p>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </div>

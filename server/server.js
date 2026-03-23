@@ -28,11 +28,11 @@ const upload = multer({
 
 // Email transporter configuration using your professional settings
 const transporter = nodemailer.createTransport({
-  host: 'mail.proessayworks.com',      // Your outgoing server
+  host: 'mail.Essayproficiency.com',      // Your outgoing server
   port: 465,                           // SMTP port
   secure: true,                        // SSL/TLS required for port 465
   auth: {
-    user: 'admin@proessayworks.com',   // Your professional email
+    user: 'admin@Essayproficiency.com',   // Your professional email
     pass: 'Raphael781077'   // REPLACE WITH YOUR ACTUAL PASSWORD
   },
   tls: {
@@ -52,8 +52,8 @@ app.get('/api/test', (req, res) => {
 app.get('/api/test-email', async (req, res) => {
   try {
     await transporter.sendMail({
-      from: '"ProEssayWorks Test" <admin@proessayworks.com>',
-      to: 'admin@proessayworks.com',
+      from: '"Essayproficiency Test" <admin@Essayproficiency.com>',
+      to: 'admin@Essayproficiency.com',
       subject: 'SMTP Configuration Test',
       text: 'This is a test email to verify SMTP settings',
       html: '<p>This is a <b>test email</b> to verify SMTP settings</p>'
@@ -148,19 +148,19 @@ app.post('/api/assignments', upload.array('files'), async (req, res) => {
     // Send confirmation email to student
     try {
       const studentMailOptions = {
-        from: '"ProEssayWorks Team" <admin@proessayworks.com>',
+        from: '"Essayproficiency Team" <admin@Essayproficiency.com>',
         to: email,
         subject: 'Assignment Received Successfully',
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
             <div style="background-color: #4f46e5; padding: 20px; text-align: center;">
-              <h1 style="color: white; margin: 0;">ProEssayWorks</h1>
+              <h1 style="color: white; margin: 0;">Essayproficiency</h1>
             </div>
             
             <div style="padding: 20px;">
               <h2 style="color: #4f46e5;">Assignment Received Successfully!</h2>
               <p>Hello ${studentName},</p>
-              <p>Thank you for submitting your assignment with ProEssayWorks. We've received your submission and are processing it now.</p>
+              <p>Thank you for submitting your assignment with Essayproficiency. We've received your submission and are processing it now.</p>
               
               <div style="background-color: #f9fafb; padding: 16px; border-radius: 8px; border-left: 4px solid #4f46e5; margin: 20px 0;">
                 <h3 style="margin-top: 0; color: #4f46e5;">Assignment Details</h3>
@@ -174,13 +174,13 @@ app.post('/api/assignments', upload.array('files'), async (req, res) => {
               <p>A qualified writer will be assigned to your task within the next 1 minute. You'll receive another notification once your writer is assigned.</p>
               
               <p>Need immediate assistance? Contact us at 
-              <a href="mailto:support@proessayworks.com" style="color: #4f46e5;">admin@proessayworks.com</a></p>
+              <a href="mailto:support@Essayproficiency.com" style="color: #4f46e5;">admin@Essayproficiency.com</a></p>
               
-              <p>Best regards,<br>The ProEssayWorks Team</p>
+              <p>Best regards,<br>The Essayproficiency Team</p>
             </div>
             
             <div style="background-color: #f3f4f6; padding: 15px; text-align: center; font-size: 12px; color: #6b7280;">
-              <p>© ${new Date().getFullYear()} ProEssayWorks. All rights reserved.</p>
+              <p>© ${new Date().getFullYear()} Essayproficiency. All rights reserved.</p>
             </div>
           </div>
         `
@@ -196,7 +196,7 @@ app.post('/api/assignments', upload.array('files'), async (req, res) => {
     // Send notification email to admin (you)
     try {
       const adminMailOptions = {
-        from: '"ProEssayWorks Assignment Alert" <admin@proessayworks.com>',
+        from: '"Essayproficiency Assignment Alert" <admin@Essayproficiency.com>',
         to: 'raphaelsarota@gmail.com', // Your personal email
         subject: `New Assignment Request - ${assignmentType} - ${subject}`,
         html: `
@@ -244,12 +244,12 @@ app.post('/api/assignments', upload.array('files'), async (req, res) => {
               </div>
               
               <p style="color: #6b7280; font-size: 14px; text-align: center;">
-                This is an automated notification from your ProEssayWorks application.
+                This is an automated notification from your Essayproficiency application.
               </p>
             </div>
             
             <div style="background-color: #f3f4f6; padding: 15px; text-align: center; font-size: 12px; color: #6b7280;">
-              <p>© ${new Date().getFullYear()} ProEssayWorks. All rights reserved.</p>
+              <p>© ${new Date().getFullYear()} Essayproficiency. All rights reserved.</p>
             </div>
           </div>
         `
@@ -453,7 +453,7 @@ app.delete('/api/assignments/:id', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   console.log(`CORS enabled for: http://localhost:3000`);
-  console.log(`Email notifications from: admin@proessayworks.com`);
+  console.log(`Email notifications from: admin@Essayproficiency.com`);
   console.log(`Admin notifications to: raphaelsarota@gmail.com`);
   console.log(`Test email endpoint: http://localhost:${PORT}/api/test-email`);
 });
